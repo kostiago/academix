@@ -33,15 +33,18 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Notification> notifications = new HashSet<>();
 
+    @ManyToMany(mappedBy = "user")
+    private Set<Schedule> schedules = new HashSet<>();
+
     public User() {
     }
 
-    public User(Long id, String name, String email, String password, Set<Role> roles) {
+    public User(Long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+
     }
 
     public Long getId() {
@@ -80,8 +83,12 @@ public class User {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public Set<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public Set<Schedule> getSchedules() {
+        return schedules;
     }
 
     @Override
