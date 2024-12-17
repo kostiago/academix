@@ -2,7 +2,7 @@ package com.kostiago.academix.entities;
 
 import java.time.Instant;
 
-import com.kostiago.academix.entities.enuns.DeliverStatus;
+import com.kostiago.academix.entities.enums.DeliverStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

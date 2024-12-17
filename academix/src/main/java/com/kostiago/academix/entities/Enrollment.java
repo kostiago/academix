@@ -1,7 +1,9 @@
 package com.kostiago.academix.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.kostiago.academix.entities.pk.EnrollmentPk;
@@ -10,6 +12,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,20 +31,28 @@ public class Enrollment {
     private boolean available;
     private boolean onlyUpdate;
 
+    @OneToOne(mappedBy = "enrollment")
+    private Certificate certificate;
+
     @ManyToMany(mappedBy = "enrollmentsDone")
     private Set<Lesson> lessonsDone = new HashSet<>();
+
+    @OneToMany(mappedBy = "enrollment")
+    private List<Deliver> deliveries = new ArrayList<>();
 
     public Enrollment() {
     }
 
     public Enrollment(User user, Offer offer, Instant enrollMoment, Instant refundMoment, boolean available,
-            boolean onlyUpdate) {
+            boolean onlyUpdate, List<Deliver> deliveries, Certificate certificate) {
         id.setUser(user);
         id.setOffer(offer);
         this.enrollMoment = enrollMoment;
         this.refundMoment = refundMoment;
         this.available = available;
         this.onlyUpdate = onlyUpdate;
+        this.deliveries = deliveries;
+        this.certificate = certificate;
     }
 
     public User getStudent() {
@@ -93,6 +105,18 @@ public class Enrollment {
 
     public Set<Lesson> getLessonsDone() {
         return lessonsDone;
+    }
+
+    public List<Deliver> getDeliveries() {
+        return deliveries;
+    }
+
+    public Certificate getCertificate() {
+        return certificate;
+    }
+
+    public void setCertificate(Certificate certificate) {
+        this.certificate = certificate;
     }
 
     @Override

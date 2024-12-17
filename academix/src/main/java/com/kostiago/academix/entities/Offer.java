@@ -1,7 +1,9 @@
 package com.kostiago.academix.entities;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -36,6 +38,9 @@ public class Offer {
 
     @OneToMany(mappedBy = "offer")
     private Set<Resource> resources = new HashSet<>();
+
+    @OneToMany(mappedBy = "offer")
+    private List<Topic> topics = new ArrayList<>();
 
     public Offer() {
     }
@@ -90,6 +95,10 @@ public class Offer {
 
     public Set<Resource> getResources() {
         return resources;
+    }
+
+    public List<Topic> getTopics() {
+        return topics;
     }
 
     @Override

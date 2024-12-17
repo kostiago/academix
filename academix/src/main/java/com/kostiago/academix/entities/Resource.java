@@ -3,7 +3,7 @@ package com.kostiago.academix.entities;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.kostiago.academix.entities.enuns.ResourceType;
+import com.kostiago.academix.entities.enums.ResourceType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

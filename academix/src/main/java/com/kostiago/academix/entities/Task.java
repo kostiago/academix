@@ -1,6 +1,7 @@
 package com.kostiago.academix.entities;
 
 import java.time.Instant;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,9 +22,9 @@ public class Task extends Lesson {
     public Task() {
     }
 
-    public Task(Long id, String title, Integer position, Section section, String description, Integer questionCount,
-            Integer approvalCount, Double weight, Instant dueDate) {
-        super(id, title, position, section);
+    public Task(Long id, String title, Integer position, Section section, List<Deliver> deliveries, String description,
+            Integer questionCount, Integer approvalCount, Double weight, Instant dueDate, Schedule schedule) {
+        super(id, title, position, section, deliveries, schedule);
         this.description = description;
         this.questionCount = questionCount;
         this.approvalCount = approvalCount;

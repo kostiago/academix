@@ -1,5 +1,7 @@
 package com.kostiago.academix.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -13,8 +15,10 @@ public class Content extends Lesson {
     public Content() {
     }
 
-    public Content(Long id, String title, Integer position, Section section, String textContent, String videoUri) {
-        super(id, title, position, section);
+    public Content(Long id, String title, Integer position, Section section, List<Deliver> deliveries,
+            Schedule schedule,
+            String textContent, String videoUri) {
+        super(id, title, position, section, deliveries, schedule);
         this.textContent = textContent;
         this.videoUri = videoUri;
     }

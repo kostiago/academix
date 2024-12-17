@@ -1,6 +1,8 @@
 package com.kostiago.academix.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -14,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +35,13 @@ public abstract class Lesson {
     @JoinColumn(name = "section_id")
     private Section section;
 
+    @OneToMany(mappedBy = "lesson")
+    private List<Deliver> deliveries = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "schedule_id")
+    private Schedule schedule;
+
     @ManyToMany
     @JoinTable(name = "tb_lessons_done", joinColumns = @JoinColumn(name = "lesson_id"), inverseJoinColumns = {
             @JoinColumn(name = "user_id"),
@@ -44,11 +54,14 @@ public abstract class Lesson {
     public Lesson() {
     }
 
-    public Lesson(Long id, String title, Integer position, Section section) {
+    public Lesson(Long id, String title, Integer position, Section section, List<Deliver> deliveries,
+            Schedule schedule) {
         this.id = id;
         this.title = title;
         this.position = position;
         this.section = section;
+        this.deliveries = deliveries;
+        this.schedule = schedule;
 
     }
 
@@ -86,6 +99,18 @@ public abstract class Lesson {
 
     public Set<Enrollment> getEnrollmentsDone() {
         return enrollmentsDone;
+    }
+
+    public List<Deliver> getDeliveries() {
+        return deliveries;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 
     @Override
