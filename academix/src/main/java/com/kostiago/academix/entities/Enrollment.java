@@ -40,11 +40,14 @@ public class Enrollment {
     @OneToMany(mappedBy = "enrollment")
     private List<Deliver> deliveries = new ArrayList<>();
 
+    @OneToOne(mappedBy = "enrollment")
+    private StudentProgress studentProgress;
+
     public Enrollment() {
     }
 
     public Enrollment(User user, Offer offer, Instant enrollMoment, Instant refundMoment, boolean available,
-            boolean onlyUpdate, List<Deliver> deliveries, Certificate certificate) {
+            boolean onlyUpdate, List<Deliver> deliveries, Certificate certificate, StudentProgress studentProgress) {
         id.setUser(user);
         id.setOffer(offer);
         this.enrollMoment = enrollMoment;
@@ -53,6 +56,7 @@ public class Enrollment {
         this.onlyUpdate = onlyUpdate;
         this.deliveries = deliveries;
         this.certificate = certificate;
+        this.studentProgress = studentProgress;
     }
 
     public User getStudent() {
@@ -117,6 +121,14 @@ public class Enrollment {
 
     public void setCertificate(Certificate certificate) {
         this.certificate = certificate;
+    }
+
+    public StudentProgress getStudentProgress() {
+        return studentProgress;
+    }
+
+    public void setStudentProgress(StudentProgress studentProgress) {
+        this.studentProgress = studentProgress;
     }
 
     @Override

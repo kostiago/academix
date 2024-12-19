@@ -81,4 +81,8 @@ INSERT INTO tb_reply_likes (reply_id, user_id) VALUES (1,1);
 INSERT INTO tb_schedule_user (schedule_id, user_id) VALUES (1, 1);
 
 -- INSERINDO "CERTIFICADO" na tabela tb_certificate
-INSERT INTO tb_certificate (issue_Date, certification_Link, course_Name, issuer_Name, issuer_Cnpj, status, course_id) VALUES ( NOW(), 'https://link-do-certificado.com/12345', 'Marketing Integrado para Pequenas Empresas', 'Agência Pense S.A', '00.000.000/0000-00', 1, 1)
+INSERT INTO tb_certificate (issue_Date, certification_Link, course_Name, issuer_Name, issuer_Cnpj, status, course_id) VALUES ( NOW(), 'https://link-do-certificado.com/12345', 'Marketing Integrado para Pequenas Empresas', 'Agência Pense S.A', '00.000.000/0000-00', 1, 1);
+
+-- INSERINDO "PROGRESSO DO ESTUDANTE" na tabela tb_student_progress
+INSERT INTO tb_student_progress (lessons_completed, deliveries_completed, percentage_completed, last_update, user_id, offer_id) VALUES (15, 5, 85.5, NOW(), 1, 1);
+
